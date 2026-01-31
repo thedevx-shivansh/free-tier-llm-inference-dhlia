@@ -1,92 +1,87 @@
-Decentralized Hybrid LLM Inference on Free-Tier GPUs
+# Decentralized Hybrid LLM Inference on Free-Tier GPUs
 
-This repository contains a reproducible deployment of open-weight large language model (LLM) inference running on free-tier GPU infrastructure.
+> **A systems-level feasibility study of running modern open-weight LLMs  
+> on free-tier GPU infrastructure.**
 
-The goal of this project is not to build a product or a framework.
-It is to verify, in practice, what kinds of modern reasoning models can actually run under strict hardware and cost constraints (Kaggle free tier).
+---
 
-This repository is linked to a student research paper focused on system-level feasibility, not model training or benchmark competition.
+## Overview
 
-What I built:
-I deployed a local inference stack using open-weight LLMs on a free-tier NVIDIA GPU (Kaggle), and validated that:
-7B–8B quantized reasoning models can run reliably
-Inference is usable after cold start
-VRAM usage stays within free-tier limits
-Time-to-first-token and throughput are observable and repeatable
-The system survives typical free-tier issues (ephemeral sessions, restarts)
+This repository contains a **reproducible deployment** of open-weight large language model (LLM) inference running entirely on **free-tier GPU infrastructure**.
 
-The deployment uses:
-Ollama for local model execution
-Open WebUI for interaction
-A single-node setup (no distributed inference)
-No paid APIs
+The objective of this project is **not** to build a product, framework, or hosted service.
 
-Hardware & environment:
-Platform: Kaggle Notebooks (Free Tier)
-GPU: NVIDIA Tesla T4 (16GB VRAM)
-Session type: Ephemeral (12-hour limit)
-Cost: $0
+Instead, it answers a narrower and more practical question:
 
-Exact environment proof is included in the screenshots folder.
+> **What kinds of modern reasoning-capable LLMs actually run under strict hardware and cost constraints?**
 
-Repository structure
+All experiments were executed on the **Kaggle free tier**, with no paid APIs and no persistent infrastructure.
+
+This repository serves as the **executable artifact** for an accompanying **student research paper** focused on *system-level feasibility*, not model training or benchmark competition.
+
+---
+
+## What Was Built
+
+A local inference stack was deployed using **open-weight LLMs** on a free-tier NVIDIA GPU and validated through direct execution.
+
+The system demonstrates that:
+
+- Quantized **7B–8B reasoning models** can run reliably  
+- Inference remains usable after cold start  
+- GPU memory usage stays within free-tier limits  
+- **Time-to-first-token (TTFT)** and throughput are observable and repeatable  
+- The setup tolerates common free-tier constraints  
+  (ephemeral sessions, restarts, session limits)
+
+All claims are based on **observed behavior**, not estimates.
+
+---
+
+## System Architecture
+
+**Deployment characteristics**
+
+- **Inference engine:** Ollama  
+- **User interface:** Open WebUI  
+- **Topology:** Single-node (no distributed inference)  
+- **APIs:** None (fully local execution)  
+
+This project prioritizes **what runs in practice**, not architectural abstraction.
+
+---
+
+## Hardware & Runtime Environment
+
+| Component | Details |
+|--------|--------|
+| Platform | Kaggle Notebooks (Free Tier) |
+| GPU | NVIDIA Tesla T4 (16 GB VRAM) |
+| Session Type | Ephemeral (≈12-hour limit) |
+| Cost | `$0` |
+
+> [!NOTE]  
+> Exact runtime proof (GPU allocation, backend status, UI, and inference output)  
+> is included in the `screenshots/` directory.
+
+---
+
+## Repository Layout
+
+```text
 deployment/
-  kaggle_ollama_webui.py   → full deployment script
+ └─ kaggle_ollama_webui.py
+    → Full deployment script
 
 notebooks/
-  kaggle_inference_validation.ipynb
-  → minimal execution log used for validation
+ └─ kaggle_inference_validation.ipynb
+    → Minimal execution log used for validation
 
 screenshots/
-  nvidia-smi.png           → GPU allocation proof
-  ollama-running.png       → backend running
-  open-webui-ui.png        → UI confirmation
-  model-response.png       → inference output
+ ├─ nvidia-smi.png        → GPU allocation proof
+ ├─ ollama-running.png    → Backend running
+ ├─ open-webui-ui.png     → UI confirmation
+ └─ model-response.png   → Inference output
 
 README.md
 LICENSE
-
-
-Nothing here is abstracted or hidden.
-What ran is what you see.
-
-What works:
-7B–8B open-weight models (quantized)
-Stable inference once models are loaded
-TTFT in the few-seconds range
-Tokens/sec in the tens (hardware dependent)
-Repeatable execution across sessions
-
-What does NOT work well:
-Long context (>16k tokens) on free tier
-Large models (30B+) without aggressive offloading
-Production reliability or uptime guarantees
-Anything requiring SLAs
-This is a research deployment, not a service.
-
-Reproducibility
-To reproduce:
-Open a Kaggle notebook with GPU enabled
-Run the deployment script in deployment/
-Verify GPU allocation with nvidia-smi
-
-Run a basic inference prompt:
-The notebook in notebooks/ is provided as an execution log, not a tutorial.
-The deployment script is the authoritative reference.
-
-Relation to the paper:
-This repository is the executable artifact referenced in the accompanying research paper on decentralized / hybrid LLM inference under free-tier constraints.
-The paper explains why the system is designed this way.
-This repository shows that it actually runs.
-
-Notes:
-The code prioritizes reproducibility over elegance
-Some steps are intentionally explicit
-No optimization beyond what was required to run on free tier
-This is intentional.
-
-Author
-Shivansh Arora
-High School Student (India)
-Systems-focused research project
-Built and validated through direct experimentation
