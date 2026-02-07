@@ -18,6 +18,8 @@ Instead, it answers a narrower and more practical question:
 All experiments were executed on the **Kaggle free tier**, with no paid APIs and no persistent infrastructure.
 
 This repository serves as the **executable artifact** for an accompanying **student research paper** focused on *system-level feasibility*, not model training or benchmark competition.
+**Research Paper Link:**
+**https://zenodo.org/records/18466177**
 
 ---
 
