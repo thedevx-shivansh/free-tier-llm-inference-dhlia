@@ -20,6 +20,8 @@ All experiments were executed on the **Kaggle free tier**, with no paid APIs and
 This repository serves as the **executable artifact** for an accompanying **student research paper** focused on *system-level feasibility*, not model training or benchmark competition.
 **Research Paper Link:**
 **https://zenodo.org/records/18466177**
+**Kaggle Logs:**
+**https://www.kaggle.com/code/shivanshdevx/free-tier-llm-inference-validation**
 
 ---
 
@@ -87,3 +89,4 @@ screenshots/
 
 README.md
 LICENSE
+
